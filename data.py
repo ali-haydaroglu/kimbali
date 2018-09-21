@@ -16,6 +16,9 @@ def sort(x, key):
     return x[np.argsort(claim['amount'])[::-1]]
 
 
+def count(x, key, value):
+    return len(subset_query(x, lambda p: p[key] == value))
+
 def sort_by(x, key, func, return_scores=True):
     '''sort the input array x by the key according to the score per key'''
     keys = np.unique(x[key])
@@ -47,7 +50,11 @@ def average(x, key, value_key, return_split=False):
     split = split_by(x, key)
     split_averages = {}
     for k in split.keys():
-        split_averages[k] = split[k][value_key].mean()
+        split_averages[k] = {}
+        split_averages[k]['avg'] = split[k][value_key].mean()
+        split_averages[k]['std'] = split[k][value_key].std()
+        split_averages[k]['min'] = split[k][value_key].min()
+        split_averages[k]['max'] = split[k][value_key].max()
     if return_split:
         return split_averages, split
     else:
