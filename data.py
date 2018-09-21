@@ -10,3 +10,5 @@ def subset_idxs(x, keep_idxs):
         if len(keep_idxs) == 1:
             keep_idxs = [keep_idxs]
         return x[keep_idxs]
+def sort(x, key):
+    return x[np.argsort(claim['amount'])[::-1]]
