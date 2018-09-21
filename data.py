@@ -40,3 +40,15 @@ def split_by(x, key):
     for key in split_dict.keys():
         split_dict[key] = np.asarray(split_dict[key], dtype=x.dtype)
     return split_dict
+
+
+def average(x, key, value_key, return_split=False):
+    '''average x[value_key] per unique element in x[key]'''
+    split = split_by(x, key)
+    split_averages = {}
+    for k in split.keys():
+        split_averages[k] = split[k][value_key].mean()
+    if return_split:
+        return split_averages, split
+    else:
+        return split_averages
