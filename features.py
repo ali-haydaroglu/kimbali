@@ -1,3 +1,4 @@
+import data
 def compute_cases(claims):
     split_by_provider = data.split_by(claims, 'provider_id')
     num_cases = {}
