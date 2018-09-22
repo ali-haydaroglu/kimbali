@@ -1,4 +1,5 @@
 import data
+import numpy as np
 def compute_cases(claims):
     split_by_provider = data.split_by(claims, 'provider_id')
     num_cases = {}
@@ -35,6 +36,6 @@ def compute_per_patient_stats(claims):
             visits [key] = visits.get(key,0) + 1
         mean_fees[provider] = np.mean(list(fees.values()))
         std_fees[provider] = np.std(list(fees.values()))
-        mean_visits[provider] = np.mean(list(fees.values()))
+        mean_visits[provider] = np.mean(list(visits.values()))
         std_visits[provider] = np.std(list(visits.values()))
     return mean_fees, std_fees, mean_visits, std_visits
